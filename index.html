@@ -570,31 +570,35 @@
         <h2>Get Early Access</h2>
         <p>Secure entry privileges and early-bird notifications for upcoming underground configurations.</p>
         
-        <form action="#" method="POST">
+        <!-- Live Form Configured with Web3Forms API Endpoint -->
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <!-- Hidden Access Key Configuration Details -->
+            <input type="hidden" name="access_key" value="16e7bda2-637e-4c61-9eed-fb404ef10d82">
+            
             <div class="form-grid">
                 <div class="form-group">
                     <label for="first-name">First Name</label>
-                    <input type="text" id="first-name" required placeholder="John">
+                    <input type="text" id="first-name" name="First Name" required placeholder="John">
                 </div>
                 <div class="form-group">
                     <label for="last-name">Last Name</label>
-                    <input type="text" id="last-name" required placeholder="Doe">
+                    <input type="text" id="last-name" name="Last Name" required placeholder="Doe">
                 </div>
                 <div class="form-group">
                     <label for="instagram">Instagram Username</label>
-                    <input type="text" id="instagram" required placeholder="@username">
+                    <input type="text" id="instagram" name="Instagram Handle" required placeholder="@username">
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" required placeholder="+20 1XX XXX XXXX">
+                    <input type="tel" id="phone" name="Phone Number" required placeholder="+20 1XX XXX XXXX">
                 </div>
                 <div class="form-group full-width">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" required placeholder="john@example.com">
+                    <input type="email" id="email" name="Email Address" required placeholder="john@example.com">
                 </div>
                 <div class="form-group full-width">
                     <label for="attendance">How are you attending?</label>
-                    <select id="attendance" required>
+                    <select id="attendance" name="Attendance Type" required>
                         <option value="" disabled selected hidden>Select attendance style...</option>
                         <option value="couple">Couple</option>
                         <option value="mixed-group">Mixed Group</option>
