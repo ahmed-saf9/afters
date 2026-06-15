@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candy Flip Afters | The Party Never Ends</title>
-    <!-- Premium Fonts Setup -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -43,6 +42,23 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 9999;
+        }
+
+        /* GLOBAL FIXED FLICKERING NEON BACKGROUND */
+        .global-neon-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('Gemini_Generated_Image_enmvnienmvnienmv (1).png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1; /* Sits directly behind all site content */
+            pointer-events: none;
+            /* Combines slow atmospheric pulse scaling with erratic system neon flicker */
+            animation: background-pulse 12s infinite alternate, realistic-flicker 5s infinite;
         }
 
         /* Elegant Navigation */
@@ -120,6 +136,7 @@
             padding: 120px 8%;
             position: relative;
             box-sizing: border-box;
+            z-index: 2; /* Forces all content sections to stack safely on top of the fixed background */
         }
 
         /* SECTION 1: HERO */
@@ -131,25 +148,6 @@
             align-items: center;
             text-align: center;
             padding-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-        /* Dynamic flickering background layout */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--bg-pure)), url('Gemini_Generated_Image_enmvnienmvnienmv (1).png');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-            /* Combines slow atmospheric pulse with erratic neon flicker */
-            animation: background-pulse 10s infinite alternate, realistic-flicker 5s infinite;
-        }
-        /* Ensures typography displays cleanly over the shifting background elements */
-        .hero h1, .hero p, .hero-btns {
-            position: relative;
-            z-index: 2;
         }
         .hero h1 {
             font-family: var(--font-display);
@@ -172,31 +170,29 @@
             color: var(--accent);
             font-family: var(--font-body);
             font-size: clamp(1.2rem, 2.8vw, 1.6rem);
-            font-weight: 700; /* Bold */
+            font-weight: 700;
             letter-spacing: 1px;
             margin-bottom: 12px;
-            /* Multi-layered neon glow generation vectors */
             text-shadow: 0 0 8px rgba(255, 79, 163, 0.9),
                          0 0 20px rgba(255, 79, 163, 0.6),
                          0 0 30px rgba(255, 79, 163, 0.3);
         }
         .hero-subtext {
             display: block;
-            color: var(--text-muted);
+            color: #ffffff; /* Switched to White */
             font-size: clamp(0.95rem, 2.2vw, 1.15rem);
-            font-weight: 300;
+            font-weight: 400;
             letter-spacing: 0.5px;
             text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         }
 
-        /* SECTION 2: ABOUT */
+        /* SECTION 2: ABOUT (Solid Grey Layer Banner) */
         .about {
             background-color: var(--bg-charcoal);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            z-index: 5;
         }
         .section-tag {
             color: var(--accent);
@@ -245,7 +241,7 @@
             margin: 0;
         }
 
-        /* SECTION 3: WHAT WE STAND FOR */
+        /* SECTION 3: WHAT WE STAND FOR (Reveals Neon Background) */
         .pillars h2 {
             font-family: var(--font-display);
             font-size: 2.5rem;
@@ -261,7 +257,8 @@
             margin: 0 auto;
         }
         .pillar-card {
-            background-color: var(--bg-card);
+            background-color: rgba(18, 18, 18, 0.85); /* Added slight translucency for premium depth over fixed background */
+            backdrop-filter: blur(10px);
             padding: 40px 30px;
             border: 1px solid rgba(255,255,255,0.03);
             transition: all 0.3s ease;
@@ -293,7 +290,7 @@
             margin: 0;
         }
 
-        /* SECTION 4: UPCOMING */
+        /* SECTION 4: UPCOMING (Solid Grey Layer Banner) */
         .upcoming {
             background-color: var(--bg-charcoal);
             text-align: center;
@@ -305,7 +302,7 @@
             font-size: clamp(2.3rem, 5.5vw, 4.2rem);
             margin: 0 0 20px 0;
             letter-spacing: 2px;
-            color: var(--accent); /* Locked to brand hot pink */
+            color: var(--accent);
             text-shadow: 0 0 15px rgba(255, 79, 163, 0.25);
         }
         .upcoming-badge {
@@ -350,7 +347,7 @@
             text-shadow: 0 0 10px rgba(255, 79, 163, 0.4);
         }
 
-        /* SECTION 5: WAITLIST FORM */
+        /* SECTION 5: WAITLIST FORM (Reveals Neon Background) */
         .waitlist {
             max-width: 600px;
             margin: 0 auto;
@@ -364,8 +361,9 @@
         }
         .waitlist p {
             text-align: center;
-            color: var(--text-muted);
+            color: #ffffff; /* Switched to White */
             margin-bottom: 50px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
         .form-grid {
             display: grid;
@@ -380,13 +378,15 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: var(--text-muted);
+            color: #ffffff; /* Switched to White */
             margin-bottom: 8px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
         }
         .form-group input, .form-group select {
             width: 100%;
             box-sizing: border-box;
-            background-color: var(--bg-charcoal);
+            background-color: rgba(10, 10, 10, 0.85); /* Transparency matching cards */
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.08);
             padding: 16px;
             color: #ffffff;
@@ -405,7 +405,7 @@
             width: 100%;
         }
 
-        /* SECTION 6: FOOTER */
+        /* SECTION 6: FOOTER (CRITICAL POSITIONAL RECOVERY WORK) */
         footer {
             background-color: #050505;
             padding: 60px 8% 40px 8%;
@@ -414,6 +414,8 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            position: relative; /* Forces visibility tracking */
+            z-index: 10;        /* Pops element over background dimensions */
         }
         .footer-brand h3 {
             font-family: var(--font-display);
@@ -450,22 +452,22 @@
             letter-spacing: 1px;
         }
 
-        /* System Animations */
+        /* Atmospheric Ambient Pulse scaling */
         @keyframes background-pulse {
             0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
+            100% { transform: scale(1.03); }
         }
 
         /* Realistic Neon Sign Glow Flicker Loop */
         @keyframes realistic-flicker {
             0%, 100% { opacity: 1; filter: brightness(1); }
             41% { opacity: 1; filter: brightness(1); }
-            42% { opacity: 0.3; filter: brightness(0.4); } /* Instant voltage drop */
-            43% { opacity: 1; filter: brightness(1.15); }  /* Surge burst back */
-            44% { opacity: 0.4; filter: brightness(0.5); }  /* Secondary short stutter */
+            42% { opacity: 0.3; filter: brightness(0.4); }
+            43% { opacity: 1; filter: brightness(1.15); }  
+            44% { opacity: 0.4; filter: brightness(0.5); }  
             45% { opacity: 1; filter: brightness(1); }
             86% { opacity: 1; filter: brightness(1); }
-            87% { opacity: 0.2; filter: brightness(0.3); }  /* Clean singular system blink */
+            87% { opacity: 0.2; filter: brightness(0.3); }  
             88% { opacity: 1; filter: brightness(1); }
         }
 
@@ -499,7 +501,8 @@
 
     <div class="grain-overlay"></div>
 
-    <!-- Navigation Bar -->
+    <div class="global-neon-bg"></div>
+
     <nav>
         <a href="#" class="nav-logo">
             <img src="3ba717a8-3f8d-4cbe-a45f-47e5381d547a.png" alt="Candy Flip Logo">
@@ -507,7 +510,6 @@
         </a>
     </nav>
 
-    <!-- SECTION 1: HERO -->
     <section class="hero">
         <h1>Where Next?</h1>
         <p>
@@ -520,7 +522,6 @@
         </div>
     </section>
 
-    <!-- SECTION 2: ABOUT -->
     <section class="about">
         <span class="section-tag">The Philosophy</span>
         <h2>The Main Event Is Just The Opening Act.</h2>
@@ -542,28 +543,23 @@
         </div>
     </section>
 
-    <!-- SECTION 3: WHAT WE STAND FOR -->
     <section class="pillars">
         <div class="pillars-grid">
-            <!-- Pillar 1 -->
             <div class="pillar-card">
                 <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm14 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 <h3>Curated Crowds</h3>
                 <p>A selective gathering of like-minded purists who preserve and protect the energy on the floor.</p>
             </div>
-            <!-- Pillar 2 -->
             <div class="pillar-card">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
                 <h3>Music First</h3>
                 <p>Uncompromising lineups featuring world-class selectors, customized acoustics, and deep extended sets.</p>
             </div>
-            <!-- Pillar 3 -->
             <div class="pillar-card">
                 <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 <h3>Secret Locations</h3>
                 <p>Bespoke transformations of industrial layouts and raw spaces tailored explicitly for each specific act.</p>
             </div>
-            <!-- Pillar 4 -->
             <div class="pillar-card">
                 <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 <h3>The Party Never Ends</h3>
@@ -572,7 +568,6 @@
         </div>
     </section>
 
-    <!-- SECTION 4: UPCOMING -->
     <section class="upcoming">
         <div class="upcoming-badge">Next Experience</div>
         <h2>Candy Flip #02 Summer Edition</h2>
@@ -586,14 +581,11 @@
         <div class="tba-text">More Details TBA</div>
     </section>
 
-    <!-- SECTION 5: WAITLIST FORM -->
     <section id="waitlist-section" class="waitlist">
         <h2>Get Early Access</h2>
         <p>Secure entry privileges and early-bird notifications for upcoming underground configurations.</p>
         
-        <!-- Live Form Configured with Web3Forms API Endpoint -->
         <form action="https://api.web3forms.com/submit" method="POST">
-            <!-- Hidden Access Key Configuration Details -->
             <input type="hidden" name="access_key" value="16e7bda2-637e-4c61-9eed-fb404ef10d82">
             
             <div class="form-grid">
@@ -633,14 +625,12 @@
         </form>
     </section>
 
-    <!-- SECTION 6: FOOTER -->
     <footer>
         <div class="footer-brand">
             <h3>Candy Flip Afters</h3>
             <p>Afters. Redefined.</p>
         </div>
         <div class="footer-socials">
-            <!-- Instagram -->
             <a href="https://www.instagram.com/candyflip.afters?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" aria-label="Instagram">
                 <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2" stroke="currentColor" fill="none"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke-width="2" stroke="currentColor" fill="none"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2" stroke="currentColor"/></svg>
             </a>
