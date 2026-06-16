@@ -318,10 +318,11 @@
                     <!-- Category & Attendance Setup Row -->
                     <div class="form-group">
                         <label for="ticket-category">Ticket Tier Category</label>
-                        <select id="ticket-category" required onchange="calculateTotalSummary()">
-                            <option value="1000">Early Bird Tier — 1,000 EGP</option>
-                            <option value="1200" selected>Wave One Tier (Public Sale) — 1,200 EGP</option>
-                        </select>
+                      <select id="ticket-category" required onchange="calculateTotalSummary()">
+    <!-- THE SWITCH: Removed 'disabled' and moved 'selected' here -->
+    <option value="1000" selected>Early Bird Tier — 1,000 EGP</option>
+    <option value="1200">Wave One Tier (Public Sale) — 1,200 EGP</option>
+</select>
                     </div>
 
                     <div class="form-grid-row">
