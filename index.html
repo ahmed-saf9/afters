@@ -400,7 +400,79 @@
             font-weight: 800;
             text-shadow: 0 0 10px rgba(255, 79, 163, 0.4);
         }
+/* SECTION: WHY JOIN */
+        .why-join {
+            background-color: var(--bg-pure);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .why-join h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin: 0 0 40px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .benefit-card {
+            background-color: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 35px 20px;
+            transition: all 0.3s ease;
+        }
+        .benefit-card:hover {
+            border-color: rgba(255, 79, 163, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 79, 163, 0.05);
+        }
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+        }
+        .benefit-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin: 0 0 12px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .benefit-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.5;
+        }
 
+        /* Two-by-two mobile grid */
+        @media (max-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .benefit-card {
+                padding: 25px 15px;
+            }
+            .benefit-icon {
+                font-size: 2rem;
+            }
+            .benefit-card h3 {
+                font-size: 0.95rem;
+            }
+            .benefit-card p {
+                font-size: 0.85rem;
+            }
+        }
         /* SECTION 5: WAITLIST FORM */
         .waitlist {
             max-width: 600px;
@@ -648,7 +720,31 @@
         </div>
         <div class="tba-text">More Details TBA</div>
     </section>
-
+<section class="why-join">
+        <h2>Why Join?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <span class="benefit-icon">🕒</span>
+                <h3>Early Access</h3>
+                <p>Get event announcements before the public.</p>
+            </div>
+            <div class="benefit-card">
+                <span class="benefit-icon">🎟️</span>
+                <h3>Priority Tickets</h3>
+                <p>Access ticket drops before general release.</p>
+            </div>
+            <div class="benefit-card">
+                <span class="benefit-icon">📍</span>
+                <h3>Venue Reveals</h3>
+                <p>Be first to know where the night continues.</p>
+            </div>
+            <div class="benefit-card">
+                <span class="benefit-icon">🌅</span>
+                <h3>Never Miss The After</h3>
+                <p>Stay connected to every Candy Flip experience.</p>
+            </div>
+        </div>
+    </section>
     <!-- SECTION 5: WAITLIST FORM -->
     <section id="waitlist-section" class="waitlist">
         <h2>Get Early Access</h2>
