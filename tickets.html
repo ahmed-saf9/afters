@@ -255,7 +255,7 @@
         <a href="index.html" class="nav-logo">
             <img src="3ba717a8-3f8d-4cbe-a45f-47e5381d547a.png" alt="Candy Flip Logo">
         </a>
-        <a href="index.html" class="back-home">← Return To Main Page</a>
+        <a href="index.html" class="back-home">← Return Main Page</a>
     </nav>
 
     <main class="checkout-container">
@@ -266,20 +266,20 @@
 
         <!-- Transaction Details Processing Column -->
         <div class="details-column">
-            <span class="event-meta-tag">CandyFlip SUMMER EDITION</span>
+            <span class="event-meta-tag">CandyFlip summer edition</span>
             <h1>Adriatique After</h1>
             
             <div class="event-description-block">
                 <p>Location: Secret Open Air Arena, North Coast<br>
                 Date: Saturday, July 25, 2026 // 05:00 AM - Noon</p>
-                <p>Candy Flip continues the frequency narrative till noon. Sound field optimization via custom alignment blocks. Entry strictly permitted via verified ticket registration matches only.</p>
+                <p>Candy Flip continues the frequency narrative past dawn. Sound field optimization via custom alignment blocks. Entry strictly permitted via verified ticket registration matches only.</p>
             </div>
 
             <!-- Dynamic Interactive Checkout Form Entity -->
             <div class="checkout-panel">
                 <h2>Secure Your Tickets Now</h2>
                 
-                <!-- NATIVE DIRECT PIPELINE ATTACHED TO WEB3FORMS DISPATCH ENGINE -->
+                <!-- Native submit routing via validation logic engine hook -->
                 <form id="checkout-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="return executeCheckoutDualPipeline(event)">
                     
                     <!-- WEB3FORMS SYSTEM ARCHITECTURE CONFIGURATION MATRIX -->
@@ -287,8 +287,6 @@
                     <input type="hidden" id="form-subject-line" name="subject" value="New Ticket Purchase Order">
                     <input type="hidden" id="form-total-egp" name="Total Calculated Bill (EGP)" value="1200 EGP">
                     <input type="hidden" id="form-readable-tier" name="Selected Ticket Tier Name" value="Wave One Tier (Public Sale)">
-                    
-                    <!-- DYNAMIC ABSOLUTE REDIRECT TARGET NODE: Managed by JavaScript compiler right before dispatch -->
                     <input type="hidden" id="native-redirect" name="redirect" value="">
 
                     <!-- Full Name Capture Input -->
@@ -318,11 +316,10 @@
                     <!-- Category & Attendance Setup Row -->
                     <div class="form-group">
                         <label for="ticket-category">Ticket Tier Category</label>
-                      <select id="ticket-category" required onchange="calculateTotalSummary()">
-    <!-- THE SWITCH: Removed 'disabled' and moved 'selected' here -->
-    <option value="1000" selected>Early Bird Tier — 1,000 EGP</option>
-    <option value="1200">Wave One Tier (Public Sale) — 1,200 EGP</option>
-</select>
+                        <select id="ticket-category" required onchange="calculateTotalSummary()">
+                            <option value="1000">Early Bird Tier — 1,000 EGP</option>
+                            <option value="1200" selected>Wave One Tier (Public Sale) — 1,200 EGP</option>
+                        </select>
                     </div>
 
                     <div class="form-grid-row">
@@ -366,8 +363,8 @@
                             <strong>Step 1:</strong> Tap below to launch the <strong>InstaPay App</strong> seamlessly routed directly to our personal username channel, input the exact total amount shown above, and complete your transfer:
                         </p>
 
-                        <!-- Deep Link InstaPay Application Action Redirector -->
-                        <a href="https://ipn.eg/S/asafwat9/instapay/2MK11r" target="_blank" class="btn-action btn-outline-dim">
+                        <!-- Deep Link InstaPay Application Action Redirector with Tracking Trigger -->
+                        <a href="https://ipn.eg/S/asafwat9/instapay/2MK11r" target="_blank" class="btn-action btn-outline-dim" onclick="registerInstaPayPortalLaunch()">
                             Open InstaPay &amp; Pay Now
                         </a>
 
@@ -375,7 +372,7 @@
                             <strong>Step 2:</strong> Once the transfer successfully goes through, click the button below to automatically submit your form data secure to our dashboard and open WhatsApp to deliver your proof screenshot.
                         </p>
 
-                        <!-- NATIVE TYPE SUBMIT TRIGGER: Passes control loops through script validation rules safely -->
+                        <!-- Final execution trigger button node -->
                         <button type="submit" class="btn-action btn-solid-pink">
                             Send Proof on WhatsApp &amp; Claim Tickets
                         </button>
@@ -394,6 +391,14 @@
 
     <!-- Logic Processing Framework Engine -->
     <script>
+        // Internal Tracking State Matrix
+        let trackingInstaPayStateActive = false;
+
+        function registerInstaPayPortalLaunch() {
+            trackingInstaPayStateActive = true;
+            console.log("InstaPay routing channel verified online.");
+        }
+
         function calculateTotalSummary() {
             const pricePerTicket = parseInt(document.getElementById('ticket-category').value);
             const quantity = parseInt(document.getElementById('ticket-quantity').value);
@@ -409,7 +414,6 @@
             const grandTotal = pricePerTicket * quantity;
             sumNode.innerText = grandTotal.toLocaleString();
             
-            // Synchronizes calculations and human-readable names with the hidden form fields
             hiddenFormSum.value = grandTotal + " EGP";
             hiddenReadableTier.value = categoryLabelText;
             if (primaryGuestName) {
@@ -443,7 +447,13 @@
         }
 
         function executeCheckoutDualPipeline(event) {
-            // Extracts current parameter scopes
+            // PROTECTION GATE: Instantly drops out request if Step 1 button loop was bypassed
+            if (!trackingInstaPayStateActive) {
+                alert("Please launch your transfer via the InstaPay portal first by clicking the 'Open InstaPay & Pay Now' channel before routing your confirmation data.");
+                event.preventDefault();
+                return false;
+            }
+
             const primaryGuestName = document.getElementById('primary-name').value.trim();
             const primaryPhone = document.getElementById('primary-phone').value.trim();
             const primaryInstagram = document.getElementById('primary-instagram').value.trim();
@@ -456,7 +466,6 @@
             const ticketQuantity = document.getElementById('ticket-quantity').value;
             const financialSumMetric = calculateTotalSummary();
 
-            // Field Protection Validation Check Loop
             if (!primaryGuestName || !primaryPhone || !primaryInstagram || !primaryEmail) {
                 alert("Please complete all personal guest details inside the panel framework configuration boundary before pushing data to verification nodes.");
                 event.preventDefault();
@@ -470,15 +479,11 @@
                 return false;
             }
 
-            // Updates calculations one last time to protect database metrics state
             calculateTotalSummary();
 
-            // STEP 1: Dynamically compile absolute location path parameters for Web3Forms redirect tag
-            // This reads your live address (e.g., yourname.github.io/afters/tickets.html) and swaps files seamlessly!
             const nativeRedirectInput = document.getElementById('native-redirect');
             nativeRedirectInput.value = window.location.href.replace('tickets.html', 'thankyou.html');
 
-            // STEP 2: Format receipt strings and open WhatsApp window synchronously to pass popup blocker guidelines
             let receiptMessage = `Hi Candy Flip! I have successfully processed my ticket registration transfer via InstaPay.%0A%0A`;
             receiptMessage += `*— ORDER REGISTRATION ACCESS TICKET REQUEST —*%0A`;
             receiptMessage += `• *Primary Selector Name:* ${encodeURIComponent(primaryGuestName)}%0A`;
@@ -498,7 +503,6 @@
             const operationalTargetURL = `https://wa.me/201121680816?text=${receiptMessage}`;
             window.open(operationalTargetURL, '_blank');
 
-            // STEP 3: Return true to hand control to Web3Forms to upload your data completely and execute page redirect natively
             return true;
         }
     </script>
