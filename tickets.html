@@ -279,12 +279,17 @@
             <div class="checkout-panel">
                 <h2>Secure Your Access Tickets</h2>
                 
-                <form id="checkout-form">
+                <!-- NATIVE DIRECT PIPELINE ATTACHED TO WEB3FORMS DISPATCH ENGINE -->
+                <form id="checkout-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="return executeCheckoutDualPipeline(event)">
+                    
                     <!-- WEB3FORMS SYSTEM ARCHITECTURE CONFIGURATION MATRIX -->
                     <input type="hidden" name="access_key" value="798c2053-d5c5-451d-ba18-f501b00c6d0d">
                     <input type="hidden" id="form-subject-line" name="subject" value="New Ticket Purchase Order">
-                    <input type="hidden" id="form-total-egp" name="Total Calculated Bill (EGP)" value="1200">
+                    <input type="hidden" id="form-total-egp" name="Total Calculated Bill (EGP)" value="1200 EGP">
                     <input type="hidden" id="form-readable-tier" name="Selected Ticket Tier Name" value="Wave One Tier (Public Sale)">
+                    
+                    <!-- DYNAMIC ABSOLUTE REDIRECT TARGET NODE: Managed by JavaScript compiler right before dispatch -->
+                    <input type="hidden" id="native-redirect" name="redirect" value="">
 
                     <!-- Full Name Capture Input -->
                     <div class="form-group">
@@ -369,8 +374,8 @@
                             <strong>Step 2:</strong> Once the transfer successfully goes through, click the button below to automatically submit your form data secure to our dashboard and open WhatsApp to deliver your proof screenshot.
                         </p>
 
-                        <!-- Automated Async Submitting Engine Trigger and WhatsApp Link Launcher -->
-                        <button type="button" class="btn-action btn-solid-pink" onclick="executeCheckoutDualPipeline()">
+                        <!-- NATIVE TYPE SUBMIT TRIGGER: Passes control loops through script validation rules safely -->
+                        <button type="submit" class="btn-action btn-solid-pink">
                             Send Proof on WhatsApp &amp; Claim Tickets
                         </button>
                         
@@ -436,8 +441,8 @@
             calculateTotalSummary();
         }
 
-        function executeCheckoutDualPipeline() {
-            const targetForm = document.getElementById('checkout-form');
+        function executeCheckoutDualPipeline(event) {
+            // Extracts current parameter scopes
             const primaryGuestName = document.getElementById('primary-name').value.trim();
             const primaryPhone = document.getElementById('primary-phone').value.trim();
             const primaryInstagram = document.getElementById('primary-instagram').value.trim();
@@ -450,29 +455,29 @@
             const ticketQuantity = document.getElementById('ticket-quantity').value;
             const financialSumMetric = calculateTotalSummary();
 
+            // Field Protection Validation Check Loop
             if (!primaryGuestName || !primaryPhone || !primaryInstagram || !primaryEmail) {
                 alert("Please complete all personal guest details inside the panel framework configuration boundary before pushing data to verification nodes.");
-                return;
+                event.preventDefault();
+                return false;
             }
 
             if (attendanceStyleType !== 'individual' && !companionNamesString) {
                 alert("Please fill out companion group data variables completely.");
                 document.getElementById('companion-names').focus();
-                return;
+                event.preventDefault();
+                return false;
             }
 
-            // Updates the hidden form elements parameters immediately before execution
+            // Updates calculations one last time to protect database metrics state
             calculateTotalSummary();
 
-            const dataPayload = new FormData(targetForm);
-            
-            // PIPELINE NODE 1: Web3Forms asynchronous cloud node registry synchronization
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: dataPayload
-            });
+            // STEP 1: Dynamically compile absolute location path parameters for Web3Forms redirect tag
+            // This reads your live address (e.g., yourname.github.io/afters/tickets.html) and swaps files seamlessly!
+            const nativeRedirectInput = document.getElementById('native-redirect');
+            nativeRedirectInput.value = window.location.href.replace('tickets.html', 'thankyou.html');
 
-            // PIPELINE NODE 2: Encrypts parameters for custom clean text routing over WhatsApp
+            // STEP 2: Format receipt strings and open WhatsApp window synchronously to pass popup blocker guidelines
             let receiptMessage = `Hi Candy Flip! I have successfully processed my ticket registration transfer via InstaPay.%0A%0A`;
             receiptMessage += `*— ORDER REGISTRATION ACCESS TICKET REQUEST —*%0A`;
             receiptMessage += `• *Primary Selector Name:* ${encodeURIComponent(primaryGuestName)}%0A`;
@@ -492,8 +497,8 @@
             const operationalTargetURL = `https://wa.me/201121680816?text=${receiptMessage}`;
             window.open(operationalTargetURL, '_blank');
 
-            // INSTANT BREAK REDIRECT: Changes frame state instantly to completely bar processing duplicates
-            window.location.href = 'thankyou.html';
+            // STEP 3: Return true to hand control to Web3Forms to upload your data completely and execute page redirect natively
+            return true;
         }
     </script>
 </body>
